@@ -1,6 +1,11 @@
 package org.mycollection.myarraylist;
 
-import java.util.Arrays;
+/**
+ * MyArrayList class describes the data structure Array List
+ *
+ * @author Shalaiev Ivan
+ * @version 1.0.0 04.09.2023
+ */
 
 public class MyArrayList<T> {
     public static final int START_CAPACITY = 10;
@@ -11,7 +16,10 @@ public class MyArrayList<T> {
 
     }
 
-
+    /**
+     * Add element to this list.
+     * Returns true if element was added in this list.
+     */
     public boolean add(T value) {
         if (elementsAmount == arrays.length) {
             T[] newArrays = (T[]) new Object[arrays.length * 2];
@@ -22,8 +30,12 @@ public class MyArrayList<T> {
         return true;
     }
 
+    /**
+     * Returns -1 if the index is greater than the elements in the array or the index is less than zero.
+     * Removes the element at the specified index from this list.
+     */
     public int remove(int index) {
-        if (index >= arrays.length) {
+        if (index > elementsAmount - 1 || index < 0) {
             return -1;
         }
         T[] newArrays = (T[]) new Object[arrays.length - 1];
@@ -32,17 +44,25 @@ public class MyArrayList<T> {
         arrays = newArrays;
         return 1;
     }
-
+    /**
+     * Remove all elements from this list.
+     */
     public void clear() {
         arrays = (T[]) new Object[0];
     }
 
+    /**
+     * Returns the number of elements in this list.
+     */
     public int size() {
         return elementsAmount;
     }
 
+    /**
+     * Returns the element at the specified position in this list.
+     */
     public T get(int index) {
-        if (index > elementsAmount - 1){
+        if (index > elementsAmount - 1 || index < 0) {
             throw new IllegalArgumentException(
                     "Illegal argument " + index
             );
