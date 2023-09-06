@@ -1,5 +1,7 @@
 package org.mycollection.myarraylist;
 
+import java.util.Objects;
+
 /**
  * MyArrayList class describes the data structure Array List
  *
@@ -10,7 +12,7 @@ package org.mycollection.myarraylist;
 public class MyArrayList<T> {
     public static final int START_CAPACITY = 10;
     private T[] arrays = (T[]) new Object[START_CAPACITY];
-    private int elementsAmount;
+    private int size;
 
     public MyArrayList() {
 
@@ -18,31 +20,26 @@ public class MyArrayList<T> {
 
     /**
      * Add element to this list.
-     * Returns true if element was added in this list.
      */
-    public boolean add(T value) {
-        if (elementsAmount == arrays.length) {
+    public void add(T value) {
+        if (size == arrays.length) {
             T[] newArrays = (T[]) new Object[arrays.length * 2];
             System.arraycopy(arrays, 0, newArrays, 0, arrays.length);
             arrays = newArrays;
         }
-        arrays[elementsAmount++] = value;
-        return true;
+        arrays[size++] = value;
     }
 
     /**
-     * Returns -1 if the index is greater than the elements in the array or the index is less than zero.
      * Removes the element at the specified index from this list.
      */
-    public int remove(int index) {
-        if (index > elementsAmount - 1 || index < 0) {
-            return -1;
-        }
+    public void remove(int index) {
+        Objects.checkIndex(index, size);
         T[] newArrays = (T[]) new Object[arrays.length - 1];
         System.arraycopy(arrays, 0, newArrays, 0, index);
-        System.arraycopy(arrays, index + 1, newArrays, index, elementsAmount - index - 1);
+        System.arraycopy(arrays, index + 1, newArrays, index, size - index - 1);
         arrays = newArrays;
-        return 1;
+
     }
     /**
      * Remove all elements from this list.
@@ -55,18 +52,14 @@ public class MyArrayList<T> {
      * Returns the number of elements in this list.
      */
     public int size() {
-        return elementsAmount;
+        return size;
     }
 
     /**
      * Returns the element at the specified position in this list.
      */
     public T get(int index) {
-        if (index > elementsAmount - 1 || index < 0) {
-            throw new IllegalArgumentException(
-                    "Illegal argument " + index
-            );
-        }
+        Objects.checkIndex(index, size);
         return arrays[index];
     }
 }
