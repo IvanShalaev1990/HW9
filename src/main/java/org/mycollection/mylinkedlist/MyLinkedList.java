@@ -1,6 +1,7 @@
 package org.mycollection.mylinkedlist;
 
 import java.util.Objects;
+
 /**
  * MyLinkedList class describes the data structure Linked List
  *
@@ -23,6 +24,7 @@ public class MyLinkedList<T> {
         }
 
     }
+
     /**
      * Add element to this list.
      */
@@ -38,6 +40,7 @@ public class MyLinkedList<T> {
         }
         size++;
     }
+
     /**
      * Removes the element at the specified index from this list.
      */
@@ -63,6 +66,7 @@ public class MyLinkedList<T> {
         }
         size--;
     }
+
     /**
      * Remove all elements from this list.
      */
@@ -71,6 +75,7 @@ public class MyLinkedList<T> {
         first = last = current;
         size = 0;
     }
+
     /**
      * Returns the number of elements in this list.
      */
@@ -99,5 +104,26 @@ public class MyLinkedList<T> {
         return current.value;
     }
 
+    @Override
+    public String toString() {
+        int index = size();
+        if (index == 0){
+            return "[]";
+        }else {
+            StringBuilder sb = new StringBuilder("[");
+            Node<T> current = first;
+            while (index != 0) {
+                sb.append(current.value);
+                current = current.next;
+                index--;
+                if (index == 0) {
+                    sb.append("]");
+                } else {
+                    sb.append(", ");
+                }
+            }
+            return String.valueOf(sb);
+        }
+    }
 
 }
