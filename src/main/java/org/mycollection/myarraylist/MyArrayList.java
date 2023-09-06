@@ -3,9 +3,9 @@ package org.mycollection.myarraylist;
 import java.util.Objects;
 
 /**
- * MyArrayList class describes the data structure Array List
+ * MyArrayList class describes the data structure Array List.
  *
- * @author Shalaiev Ivan
+ * @author Shalaiev Ivan.
  * @version 1.0.0 04.09.2023
  */
 
