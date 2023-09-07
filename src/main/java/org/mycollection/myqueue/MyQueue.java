@@ -1,5 +1,6 @@
 package org.mycollection.myqueue;
 
+
 /**
  * MyQueue class describes the data structure Queue.
  *
@@ -21,17 +22,15 @@ public class MyQueue<T> {
     }
 
     /**
-     * Add element to the very first position.
+     * Add element to the end.
      */
     public void add(T value) {
         Node<T> current = new Node<>(value);
         if (size == 0) {
             first = last = current;
-            System.out.println("Very first Node with value " + value + " installed on position " + size);
         } else {
             last.next = current;
             last = current;
-            System.out.println("Current Node with value " + value + " installed on last position " + size);
         }
         size++;
     }
@@ -44,7 +43,9 @@ public class MyQueue<T> {
         first = last = current;
         size = 0;
     }
-
+    /**
+     * Returns the number of elements in this queue.
+     */
     public int size() {
         return size;
     }
@@ -71,5 +72,27 @@ public class MyQueue<T> {
         current.next = null;
         size--;
         return current.value;
+    }
+
+    @Override
+    public String toString() {
+        int index = size();
+        if (index == 0) {
+            return "[]";
+        } else {
+            StringBuilder sb = new StringBuilder("[");
+            MyQueue.Node<T> current = first;
+            while (index != 0) {
+                sb.append(current.value);
+                current = current.next;
+                index--;
+                if (index == 0) {
+                    sb.append("]");
+                } else {
+                    sb.append(", ");
+                }
+            }
+            return String.valueOf(sb);
+        }
     }
 }
